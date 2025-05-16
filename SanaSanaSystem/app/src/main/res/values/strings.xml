@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SanaSanaSystem</string>
+    <string-array name="document_options">
+        <item>DNI</item>
+        <item>Carnet de Extranjería</item>
+    </string-array>
 </resources>

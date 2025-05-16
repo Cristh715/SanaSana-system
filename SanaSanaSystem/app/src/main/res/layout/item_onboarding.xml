@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@color/backgroundLight">
+
+    <ImageView
+        android:id="@+id/imageOnboarding"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/ic_hospital"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:id="@+id/titleOnboarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido al Hospital"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/principal"
+        android:gravity="center"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:id="@+id/descOnboarding"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agenda tus citas médicas fácilmente"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@android:color/black"/>
+</LinearLayout>

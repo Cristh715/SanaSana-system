@@ -6,54 +6,70 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_sanasana">
 
+    <ImageButton
+        android:id="@+id/btnVolver"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/back_button"
+        android:src="@drawable/left"
+        android:scaleType="centerInside"
+        android:padding="15dp"
+        android:contentDescription="Volver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <LinearLayout
         android:id="@+id/formContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@drawable/section_background"
+        android:orientation="vertical"
         android:padding="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <EditText
-            android:id="@+id/inputCorreoTelefono"
+            android:id="@+id/inputNombres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/principal"
-            android:hint="Correo o Teléfono"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp" />
-
-        <Spinner
-            android:id="@+id/spinnerTipoDocumento"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:backgroundTint="@color/principal"
+            android:hint="Nombres"
+            android:inputType="textPersonName"
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/inputDocumento"
+            android:id="@+id/inputApellidos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:backgroundTint="@color/principal"
-            android:hint="Número de Documento"
+            android:hint="Apellidos"
+            android:inputType="textPersonName"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/inputDNI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:backgroundTint="@color/principal"
+            android:hint="DNI"
             android:inputType="number"
             android:minHeight="48dp" />
 
         <EditText
-            android:id="@+id/inputPassword"
+            android:id="@+id/inputDigito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:autofillHints=""
+            android:layout_marginBottom="25dp"
             android:backgroundTint="@color/principal"
-            android:hint="Contraseña"
-            android:inputType="textPassword"
+            android:hint="Dígito verificador"
+            android:inputType="number"
             android:minHeight="48dp" />
 
         <Button
@@ -62,20 +78,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:backgroundTint="@color/principal"
-            android:text="Ingresar"
+            android:text="Continuar"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="¿No tienes una cuenta? Regístrate"
-            android:textColor="#7E57C2" />
+            android:textStyle="bold"
+            android:padding="10dp"/>
 
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/titleLogin"
@@ -83,10 +93,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginBottom="20dp"
-        android:text="Inicio de sesión"
+        android:text="Registro"
         android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/formContainer"
         app:layout_constraintStart_toStartOf="@id/formContainer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

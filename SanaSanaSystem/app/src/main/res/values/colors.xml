@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="hospitalPurple">#A68ED1</color>
-    <color name="backgroundLight">#F6F4FA</color>
+    <color name="principal">#6270DB</color>
+    <color name="secondary">#A68ED1</color>
+    <color name="backgroundLight">#e9e9f1</color>
     <color name="textDark">#333333</color>
 </resources>
