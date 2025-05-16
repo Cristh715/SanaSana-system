@@ -1,9 +1,6 @@
-import os
 import httpx
 from typing import Optional, Dict
-
-RENIEC_URL   = "https://api.apis.net.pe/v2/reniec/dni"
-RENIEC_TOKEN = os.getenv("RENIEC_TOKEN")
+from app.utils.settings import RENIEC_URL, RENIEC_TOKEN
 
 async def validar_dni(dni: str, digito_verificador: str) -> Optional[Dict]:
     """
@@ -15,9 +12,12 @@ async def validar_dni(dni: str, digito_verificador: str) -> Optional[Dict]:
 
     async with httpx.AsyncClient() as client:
         resp = await client.get(RENIEC_URL, headers=headers, params=params)
+        
         if resp.status_code != 200:
             return None
         data = resp.json()
+        
         if data.get("digitoVerificador") != digito_verificador:
             return None
+        
         return data
