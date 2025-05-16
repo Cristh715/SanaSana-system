@@ -1,10 +1,6 @@
-import os
 import jwt
 from datetime import datetime, timedelta
-
-JWT_SECRET = os.getenv("JWT_SECRET")
-JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
-JWT_EXPIRE_MINUTES = int(os.getenv("JWT_EXPIRE_MINUTES", 60))
+from app.utils.settings import JWT_SECRET, JWT_ALGORITHM, JWT_EXPIRE_MINUTES
 
 def create_access_token(data: dict) -> str:
     """
