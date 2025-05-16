@@ -1,3 +1,5 @@
+# backend/app/services/paciente_service.py
+
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException, status
@@ -10,32 +12,23 @@ from app.utils.security import hash_password
 from app.auth.jwt import create_access_token
 
 
-async def register_paciente(db: AsyncSession, data: PacienteCreate):
-    """
-    Registra un paciente + su cuenta, validando DNI en RENIEC, nombres,
-    contraseñas, y devuelve un JWT.
-    """
-
+async def register_paciente(db: AsyncSession, data: PacienteCreate) -> TokenResponse:
     # 1) Validar DNI en RENIEC
     reniec = await validar_dni(data.dni, data.digitoVerificador)
     if not reniec:
         raise HTTPException(status_code=400, detail="DNI no válido.")
 
-    # 2) Validar coincidencia de nombres/apellidos
-    api_full = reniec.get("nombreCompleto", "").upper().strip()
-    local_full = " ".join([
-        data.apellidoPaterno,
-        data.apellidoMaterno,
-        data.nombres
-    ]).upper().strip()
-
-    if api_full != local_full:
+    # 2) Validar nombres/apellidos sin depender del orden
+    api_words   = set( reniec["nombreCompleto"].upper().split() )
+    input_words = set(
+        f"{data.nombres} {data.apellidoPaterno} {data.apellidoMaterno}"
+        .upper()
+        .split()
+    )
+    if api_words != input_words:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=(
-                f"Nombres/apellidos no coinciden con RENIEC. "
-                f"RENIEC: '{api_full}', enviado: '{local_full}'."
-            )
+            detail=("Datos inválidos , coloque correctamente la información")
         )
 
     # 3) Verificar que las contraseñas coincidan
@@ -55,7 +48,7 @@ async def register_paciente(db: AsyncSession, data: PacienteCreate):
         raise HTTPException(status_code=400, detail="El correo ya está registrado.")
     await db.refresh(cuenta)
 
-    # 5) Crear el registro de paciente 
+    # 5) Crear el registro de paciente
     paciente = Paciente(
         id_cuenta=cuenta.id_cuenta,
         nombres=data.nombres,
