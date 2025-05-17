@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from app.database.session import SessionLocal 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.schemas.auth import Token, LoginRequest
+from app.schemas.auth import LoginRequest, LoginResponse
 
 from app.services.auth_service import authenticate_user
 
@@ -12,7 +12,7 @@ async def get_db():
     async with SessionLocal() as session:
         yield session
 
-@router.post("/login", response_model=Token)
+@router.post("/login", response_model=LoginResponse)
 async def login(login_request: LoginRequest, db: AsyncSession = Depends(get_db)):
 
     email = login_request.email
