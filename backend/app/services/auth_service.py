@@ -6,6 +6,7 @@ from sqlalchemy import select
 from app.schemas.auth import LoginRequest, LoginResponse, Token
 
 from app.models.cuenta_paciente import CuentaPaciente
+from app.models.paciente import Paciente
 
 from app.utils.hash import verify_password
 from app.auth.jwt   import create_access_token
@@ -53,15 +54,19 @@ async def authenticate_user(login_request: LoginRequest, db: AsyncSession) -> Lo
     if account.cuenta_bloqueada:
         raise HTTPException(status_code=401, detail="Account is blocked")
 
+    # Find patient by account id
+    query = await db.execute(select(Paciente).where(Paciente.id_cuenta == account.id_cuenta))
+    patient = query.scalar_one_or_none()
+    
     # Generate JWT token
     token = Token(
         access_token=create_access_token(data={"sub": str(account.id_cuenta)}),
         token_type="bearer"
-    ) 
+    )
 
     # Return response
     return {
-        "dni": str(account.id_cuenta),
+        "dni": str(patient.dni),
         "email": account.correo, 
         "token": token
     }

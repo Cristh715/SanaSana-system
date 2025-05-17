@@ -7,14 +7,14 @@ from app.models.cuenta_paciente import CuentaPaciente
 from app.models.paciente import Paciente as PacienteModel
 
 from app.schemas.paciente import Paciente as PacienteSchema
-from app.schemas.auth import Token
+from app.schemas.auth import LoginResponse, Token
 
 from app.utils.reniec import validar_dni
 from app.utils.security import hash_password
 
 from app.auth.jwt import create_access_token
 
-async def register_paciente(db: AsyncSession, data: PacienteSchema) -> Token:
+async def register_paciente(db: AsyncSession, data: PacienteSchema) -> LoginResponse:
     # 1) Validar DNI en RENIEC
     reniec = await validar_dni(data.dni, data.digitoVerificador)
     if not reniec:
@@ -65,5 +65,12 @@ async def register_paciente(db: AsyncSession, data: PacienteSchema) -> Token:
     await db.refresh(paciente)
 
     # 6) Generar y devolver token JWT
-    token = create_access_token({"sub": str(cuenta.id_cuenta)})
-    return {"access_token": token, "token_type": "bearer"}
+    token = Token(
+        access_token=create_access_token(data={"sub": str(cuenta.id_cuenta)}),
+        token_type="bearer"
+    )
+    return LoginResponse(
+        dni=data.dni,
+        email=data.correo,
+        token=token
+    )
