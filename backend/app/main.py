@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.routers import register_router
+from app.routers import auth
 
 # App instance
 app = FastAPI(
@@ -31,7 +32,9 @@ async def root():
 async def health_check():
     return JSONResponse(content={"status": "healthy"}, status_code=200)
 
+# Routing
 app.include_router(register_router)
+app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
