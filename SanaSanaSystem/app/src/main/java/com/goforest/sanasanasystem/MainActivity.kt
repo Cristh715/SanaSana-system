@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("SanaSanaPrefs", MODE_PRIVATE)
         val isFirstTime = sharedPref.getBoolean("isFirstTime", true)
+        val isLogged = sharedPref.getBoolean("isLogged", false)
 
         if (isFirstTime) {
             val intent = Intent(this, OnboardingActivity::class.java)
@@ -24,10 +25,15 @@ class MainActivity : AppCompatActivity() {
 
             finish()
             return
-        }else{
-
         }
 
+        if (!isLogged) {
+            val intent = Intent(this, LoginActivity::class.java)
+            sharedPref.edit().putBoolean("isLogged", true).apply()
+            startActivity(intent)
+            finish()
+            return
+        }
         setContentView(R.layout.activity_main)
 
         val agendarItemView: View = findViewById(R.id.agendarCita)
@@ -69,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         txtItem.text = "Signos vitales"
 
         agendarItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, CreateAppointmentActivity::class.java))
         }
 
         misCitasItemView.setOnClickListener {

@@ -40,7 +40,6 @@ class LoginActivity : AppCompatActivity() {
             // correoTelefono.isNotEmpty() && documento.isNotEmpty() && password.isNotEmpty()
             if (true) {
                 Toast.makeText(this, "Iniciaste sesión", Toast.LENGTH_SHORT).show()
-
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             } else {
@@ -50,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
 
         textRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
         }
 
     }

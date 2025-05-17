@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_sanasana">
 
+    <ImageView
+        android:id="@+id/menuIconView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="Logo"
+        android:src="@drawable/ic_sana_sana_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/formContainer"
         android:layout_width="0dp"
