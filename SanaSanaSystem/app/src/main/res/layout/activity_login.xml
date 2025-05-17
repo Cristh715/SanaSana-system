@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/backgroundLight">
+    android:background="@drawable/bg_sanasana">
+
+    <ImageView
+        android:id="@+id/menuIconView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="Logo"
+        android:src="@drawable/ic_sana_sana_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
+        android:id="@+id/formContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="24dp">
-
-        <TextView
-            android:id="@+id/titleLogin"
-            android:text="Inicio de sesión"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/hospitalPurple"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="32dp"/>
+        android:orientation="vertical"
+        android:background="@drawable/bg_section_background"
+        android:padding="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <EditText
             android:id="@+id/inputCorreoTelefono"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/hospitalPurple"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/principal"
             android:hint="Correo o Teléfono"
             android:inputType="textEmailAddress"
             android:minHeight="48dp" />
@@ -38,16 +42,16 @@
             android:id="@+id/spinnerTipoDocumento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/hospitalPurple"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/principal"
             android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/inputDocumento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/hospitalPurple"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/principal"
             android:hint="Número de Documento"
             android:inputType="number"
             android:minHeight="48dp" />
@@ -56,21 +60,23 @@
             android:id="@+id/inputPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="15dp"
             android:autofillHints=""
-            android:backgroundTint="@color/hospitalPurple"
+            android:backgroundTint="@color/principal"
             android:hint="Contraseña"
             android:inputType="textPassword"
             android:minHeight="48dp" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:text="Iniciar Sesión"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/hospitalPurple"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/principal"
+            android:text="Ingresar"
             android:textColor="@android:color/white"
-            android:layout_marginBottom="24dp"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textRegister"
@@ -79,6 +85,19 @@
             android:gravity="center"
             android:text="¿No tienes una cuenta? Regístrate"
             android:textColor="#7E57C2" />
-    </LinearLayout>
-</ScrollView>
 
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/titleLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="20dp"
+        android:text="Inicio de sesión"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/formContainer"
+        app:layout_constraintStart_toStartOf="@id/formContainer" />
+</androidx.constraintlayout.widget.ConstraintLayout>
