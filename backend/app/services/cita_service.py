@@ -6,16 +6,26 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import func
 from app.models.turno import Turno
 from app.models.cita import Cita
+from app.models.paciente import Paciente
 from app.schemas.cita import CitaResponse
 from datetime import datetime
 import uuid
 
 async def solicitar_cita(
     db: AsyncSession,
-    id_paciente: int,
+    id_cuenta: int,  # ahora recibimos id_cuenta en vez de id_paciente
     id_turno: int,
     sintomas: str
 ) -> CitaResponse:
+    # 0. Obtener id_paciente a partir de id_cuenta
+    result = await db.execute(
+        select(Paciente.id_paciente).where(Paciente.id_cuenta == id_cuenta)
+    )
+    id_paciente = result.scalar_one_or_none()
+
+    if id_paciente is None:
+        raise ValueError("No existe paciente asociado a la cuenta")
+    
     # 1. Verificar que el turno existe y cargar el medico relacionado
     result = await db.execute(
         select(Turno)
