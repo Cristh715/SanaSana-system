@@ -1,18 +1,20 @@
 # backend/app/services/paciente_service.py
-
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException, status
 
 from app.models.cuenta_paciente import CuentaPaciente
-from app.models.paciente import Paciente
-from app.schemas.paciente import PacienteCreate, TokenResponse
+from app.models.paciente import Paciente as PacienteModel
+
+from app.schemas.paciente import Paciente as PacienteSchema
+from app.schemas.auth import Token
+
 from app.utils.reniec import validar_dni
 from app.utils.security import hash_password
+
 from app.auth.jwt import create_access_token
 
-
-async def register_paciente(db: AsyncSession, data: PacienteCreate) -> TokenResponse:
+async def register_paciente(db: AsyncSession, data: PacienteSchema) -> Token:
     # 1) Validar DNI en RENIEC
     reniec = await validar_dni(data.dni, data.digitoVerificador)
     if not reniec:
@@ -49,7 +51,7 @@ async def register_paciente(db: AsyncSession, data: PacienteCreate) -> TokenResp
     await db.refresh(cuenta)
 
     # 5) Crear el registro de paciente
-    paciente = Paciente(
+    paciente = PacienteModel(
         id_cuenta=cuenta.id_cuenta,
         nombres=data.nombres,
         apellidos=f"{data.apellidoPaterno} {data.apellidoMaterno}",
@@ -57,6 +59,7 @@ async def register_paciente(db: AsyncSession, data: PacienteCreate) -> TokenResp
         telefono=data.telefono,
         fecha_nacimiento=data.fecha_nacimiento
     )
+    
     db.add(paciente)
     await db.commit()
     await db.refresh(paciente)

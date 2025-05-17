@@ -1,7 +1,7 @@
-from pydantic import BaseModel, EmailStr, ConfigDict
+from pydantic import BaseModel, EmailStr
 from datetime import date
 
-class PacienteCreate(BaseModel):
+class Paciente(BaseModel):
     dni: str
     digitoVerificador: str
     nombres: str
@@ -12,9 +12,3 @@ class PacienteCreate(BaseModel):
     password: str
     password_confirm: str
     fecha_nacimiento: date
-
-class TokenResponse(BaseModel):
-    access_token: str
-    token_type: str
-
-    model_config = ConfigDict(from_attributes=True)
