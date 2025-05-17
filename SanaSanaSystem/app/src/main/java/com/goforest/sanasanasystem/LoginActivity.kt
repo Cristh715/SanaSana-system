@@ -37,8 +37,8 @@ class LoginActivity : AppCompatActivity() {
             val tipoDocumento = spinnerTipoDocumento.selectedItem.toString()
             val documento = inputDocumento.text.toString()
             val password = inputPassword.text.toString()
-
-            if (correoTelefono.isNotEmpty() && documento.isNotEmpty() && password.isNotEmpty()) {
+            // correoTelefono.isNotEmpty() && documento.isNotEmpty() && password.isNotEmpty()
+            if (true) {
                 Toast.makeText(this, "Iniciaste sesión", Toast.LENGTH_SHORT).show()
 
                 startActivity(Intent(this, MainActivity::class.java))

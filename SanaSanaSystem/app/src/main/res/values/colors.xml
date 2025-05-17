@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="principal">#6270DB</color>
     <color name="secondary">#A68ED1</color>
-    <color name="backgroundLight">#e9e9f1</color>
+    <color name="backgroundLight">#F3F3F6</color>
+    <color name="backgroundLight_pressed">#DFDFEB</color>
     <color name="textDark">#333333</color>
 </resources>

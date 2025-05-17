@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_sanasana">
+    android:background="@drawable/bg_sanasana">
 
     <ImageButton
         android:id="@+id/btnVolver"
@@ -12,8 +12,8 @@
         android:layout_height="48dp"
         android:layout_marginStart="36dp"
         android:layout_marginTop="36dp"
-        android:background="@drawable/back_button"
-        android:src="@drawable/left"
+        android:background="@drawable/bg_btn_principal"
+        android:src="@drawable/ic_arrow_left"
         android:scaleType="centerInside"
         android:padding="15dp"
         android:contentDescription="Volver"
@@ -25,7 +25,7 @@
         android:id="@+id/formContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/section_background"
+        android:background="@drawable/bg_section_background"
         android:orientation="vertical"
         android:padding="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
