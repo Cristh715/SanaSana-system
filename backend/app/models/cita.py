@@ -15,7 +15,7 @@ class Cita(Base):
     numero_turno = Column(Integer, nullable=False)
     sintomas = Column(Text, nullable=True)
     estado = Column(String(20), nullable=False, default="pendiente")  
-    qr_codigo = Column(Text, nullable=True)
+    qr_codigo = Column(String, nullable=True)
     fecha_creacion = Column(TIMESTAMP, server_default=func.current_timestamp(), nullable=False)
     confirmacion_asistencia = Column(Boolean, default=False)
 

@@ -4,7 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.schemas.cita import CitaCreate, CitaResponse
 from app.services.cita_service import solicitar_cita
 from app.database.session import SessionLocal
-from app.auth.jwt import get_current_user_id  
+from app.auth.jwt import get_current_user_id  # 👈 Aquí importas la función
 
 cita_router = APIRouter(prefix="/api", tags=["citas"])
 
@@ -16,7 +16,11 @@ async def get_db():
 async def create_cita(
     data: CitaCreate,
     db: AsyncSession = Depends(get_db),
-    id_paciente: int = Depends(get_current_user_id)
+    id_paciente: int = Depends(get_current_user_id)  # 👈 Aquí va
 ):
-    return await solicitar_cita(db, id_paciente, data.id_turno, data.sintomas)
-
+    return await solicitar_cita(
+        db,
+        id_paciente=id_paciente,
+        id_turno=data.id_turno,
+        sintomas=data.sintomas
+    )
