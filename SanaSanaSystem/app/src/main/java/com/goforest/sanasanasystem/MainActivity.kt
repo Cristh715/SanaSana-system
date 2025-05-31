@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         misCitasItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MyAppointmentsActivity::class.java))
         }
 
         horariosItemView.setOnClickListener {
