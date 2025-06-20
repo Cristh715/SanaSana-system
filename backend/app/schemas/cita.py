@@ -20,4 +20,4 @@ class CitaResponse(BaseModel):
     confirmacion_asistencia: bool
 
     class Config:
-        from_attributes = True  # ✅ Requerido para .from_orm()
+        from_attributes = True  # Requerido para .from_orm()

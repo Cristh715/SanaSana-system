@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 from datetime import datetime, timedelta
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from jwt import PyJWTError  # Usando pyjwt error para manejo de excepciones
+from jwt import PyJWTError  
 from app.utils.settings import JWT_SECRET, JWT_ALGORITHM, JWT_EXPIRE_MINUTES
 
 JWT_SECRET = os.getenv("JWT_SECRET")
