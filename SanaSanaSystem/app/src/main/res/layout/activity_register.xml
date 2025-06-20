@@ -32,7 +32,7 @@
             android:background="@drawable/bg_btn_principal"
             android:src="@drawable/ic_arrow_left"
             android:scaleType="centerInside"
-            android:padding="15dp"
+            android:padding="12dp"
             android:contentDescription="Volver"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -57,10 +57,10 @@
             android:background="@drawable/bg_section_background"
             android:orientation="vertical"
             android:padding="48dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleRegister"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_bias="1.0">
 
@@ -68,100 +68,115 @@
                 android:id="@+id/inputNombres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="Nombres"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:inputType="textPersonName|textCapWords"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputApellidoP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="Apellido Paterno"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:inputType="textPersonName|textCapWords"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputApellidoM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="Apellido Materno"
-                android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:inputType="textPersonName|textCapWords"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputDNI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="DNI"
                 android:inputType="number"
-                android:minHeight="48dp" />
+                android:maxLength="8"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputDigito"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="Dígito verificador"
                 android:inputType="number"
-                android:minHeight="48dp" />
+                android:maxLength="1"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
+
             <EditText
                 android:id="@+id/inputFechaNacimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
-                android:hint="Fecha de nacimiento"
-                android:inputType="text"
-                android:minHeight="48dp" />
+                android:layout_marginBottom="16dp"
+                android:hint="Fecha de nacimiento (DD/MM/AAAA)"
+                android:inputType="date"
+                android:focusable="false"
+                android:clickable="true"
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="Correo electrónico"
                 android:inputType="textEmailAddress"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="Teléfono"
                 android:inputType="phone"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputContrasena"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="16dp"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <EditText
                 android:id="@+id/inputContrasena2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:backgroundTint="@color/principal"
+                android:layout_marginBottom="24dp"
                 android:hint="Repetir contraseña"
                 android:inputType="textPassword"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:padding="12dp"
+                android:background="@drawable/rounded_edittext" />
 
             <Button
                 android:id="@+id/btnLogin"
@@ -170,11 +185,23 @@
                 android:layout_marginBottom="12dp"
                 android:backgroundTint="@color/principal"
                 android:padding="10dp"
-                android:text="Continuar"
+                android:text="Registrarme"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBarRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="10dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

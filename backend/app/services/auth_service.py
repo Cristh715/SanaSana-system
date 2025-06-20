@@ -24,7 +24,7 @@ async def find_account_by_email(db: AsyncSession, email: str) -> CuentaPaciente:
         raise HTTPException(status_code=500, detail="Database error: " + str(e))
 
     if not account:
-        raise HTTPException(status_code=404, detail="Account not found")
+        raise HTTPException(status_code=401, detail="Account not found")
     
     return CuentaPaciente (
         id_cuenta=account.id_cuenta,
@@ -43,7 +43,7 @@ async def authenticate_user(login_request: LoginRequest, db: AsyncSession) -> Lo
     account = await find_account_by_email(db, login_request.email)
     
     if not account:
-        raise HTTPException(status_code=404, detail="Account not found")
+        raise HTTPException(status_code=401, detail="Account not found")
     
     # Verify password
     hashed_password = account.contrasena_hash

@@ -1,78 +1,66 @@
 package com.goforest.sanasanasystem
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val sharedPref = getSharedPreferences("SanaSanaPrefs", MODE_PRIVATE)
-        val isFirstTime = sharedPref.getBoolean("isFirstTime", true)
-        val isLogged = sharedPref.getBoolean("isLogged", false)
-
-        if (isFirstTime) {
-            val intent = Intent(this, OnboardingActivity::class.java)
-            startActivity(intent)
-
-            sharedPref.edit().putBoolean("isFirstTime", false).apply()
-
-            finish()
-            return
-        }
-
-        if (!isLogged) {
-            val intent = Intent(this, LoginActivity::class.java)
-            sharedPref.edit().putBoolean("isLogged", true).apply()
-            startActivity(intent)
-            finish()
-            return
-        }
         setContentView(R.layout.activity_main)
 
         val agendarItemView: View = findViewById(R.id.agendarCita)
         val misCitasItemView: View = findViewById(R.id.misCitas)
         val horariosItemView: View = findViewById(R.id.horarios)
         val historyItemView: View = findViewById(R.id.historial)
-        val item: View = findViewById(R.id.item)
+        val bienestarDiarioItemView: View = findViewById(R.id.item)
 
-        // Agendar cita
+        // Agendar Cita
         val icAgendarCita: ImageView = agendarItemView.findViewById(R.id.itemIcon)
         val txtAgendarCita: TextView = agendarItemView.findViewById(R.id.itemText)
-        agendarItemView.setBackgroundResource(R.drawable.bg_rounded)
+        agendarItemView.setBackgroundResource(R.drawable.bg_rounded) // Este ya tiene un background
         icAgendarCita.setImageResource(R.drawable.ic_agendar_cita_light)
         txtAgendarCita.text = "Agendar Cita"
         txtAgendarCita.setTextColor(ContextCompat.getColor(this, R.color.white))
 
-        // Mis citas
+        // Mis Citas
         val icMisCitas: ImageView = misCitasItemView.findViewById(R.id.itemIcon)
         val txtMisCitas: TextView = misCitasItemView.findViewById(R.id.itemText)
+        // Asegúrate de tener un background para los demás items (bg_grid_item o similar)
+        misCitasItemView.setBackgroundResource(R.drawable.bg_grid_item)
         icMisCitas.setImageResource(R.drawable.ic_mis_citas)
         txtMisCitas.text = "Mis citas"
+        txtMisCitas.setTextColor(ContextCompat.getColor(this, R.color.black)) // Asegúrate que el color sea visible
 
         // Horarios
         val icHorarios: ImageView = horariosItemView.findViewById(R.id.itemIcon)
         val txtHorarios: TextView = horariosItemView.findViewById(R.id.itemText)
+        horariosItemView.setBackgroundResource(R.drawable.bg_grid_item)
         icHorarios.setImageResource(R.drawable.ic_horarios)
         txtHorarios.text = "Turnos médicos"
+        txtHorarios.setTextColor(ContextCompat.getColor(this, R.color.black))
 
-        // Historial médico
+        // Historial Médico
         val icHistorial: ImageView = historyItemView.findViewById(R.id.itemIcon)
         val txtHistorial: TextView = historyItemView.findViewById(R.id.itemText)
+        historyItemView.setBackgroundResource(R.drawable.bg_grid_item)
         icHistorial.setImageResource(R.drawable.ic_historial)
         txtHistorial.text = "Historial Médico"
+        txtHistorial.setTextColor(ContextCompat.getColor(this, R.color.black))
 
-        // Signos vitales
-        val icItem: ImageView = item.findViewById(R.id.itemIcon)
-        val txtItem: TextView = item.findViewById(R.id.itemText)
-        icItem.setImageResource(R.drawable.ic_signos)
-        txtItem.text = "Signos vitales"
+        // Bienestar diario
+        val icBienestarDiario: ImageView = bienestarDiarioItemView.findViewById(R.id.itemIcon)
+        val txtBienestarDiario: TextView = bienestarDiarioItemView.findViewById(R.id.itemText)
+        bienestarDiarioItemView.setBackgroundResource(R.drawable.bg_grid_item)
+        icBienestarDiario.setImageResource(R.drawable.ic_signos)
+        txtBienestarDiario.text = "Bienestar diario"
+        txtBienestarDiario.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         agendarItemView.setOnClickListener {
             startActivity(Intent(this, CreateAppointmentActivity::class.java))
@@ -83,15 +71,41 @@ class MainActivity : AppCompatActivity() {
         }
 
         horariosItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Próximamente: Turnos médicos", Toast.LENGTH_SHORT).show()
         }
 
         historyItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Próximamente: Historial médico", Toast.LENGTH_SHORT).show()
         }
 
-        item.setOnClickListener {
-            Toast.makeText(this, "Próximamente", Toast.LENGTH_SHORT).show()
+        bienestarDiarioItemView.setOnClickListener {
+            Toast.makeText(this, "Próximamente: Bienestar diario", Toast.LENGTH_SHORT).show()
         }
+
+        // Nombre obtenido del correo :'v
+        val sharedPref = getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
+        val userName = sharedPref.getString("user_email", "Usuario")
+        val displayName = if (userName?.contains("@") == true) userName.split("@")[0] else userName
+        findViewById<TextView>(R.id.nameTextView).text = "$displayName!"
+
+        findViewById<View>(R.id.stayHomeCardView).setOnClickListener {
+            Toast.makeText(this, "Redirigiendo a la próxima cita...", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val sharedPref = getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
+        val authToken = sharedPref.getString("auth_token", null)
+
+        if (authToken.isNullOrEmpty()) {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
     }
 }
