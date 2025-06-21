@@ -67,6 +67,8 @@ async def authenticate_user(login_request: LoginRequest, db: AsyncSession) -> Lo
     # Return response
     return {
         "dni": str(patient.dni),
+        "nombres": patient.nombres,
+        "apellidos": patient.apellidos,
         "email": account.correo, 
         "token": token
     }

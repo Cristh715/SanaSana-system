@@ -11,4 +11,6 @@ class LoginRequest(BaseModel):
 class LoginResponse(BaseModel):
     dni: str
     email: str
+    nombres: str
+    apellidos: str
     token: Token
