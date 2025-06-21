@@ -54,14 +54,15 @@
             android:id="@+id/formContainer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:background="@drawable/bg_section_background"
             android:orientation="vertical"
             android:padding="48dp"
-            android:layout_marginTop="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleRegister"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleRegister"
             app:layout_constraintVertical_bias="1.0">
 
             <EditText
@@ -69,114 +70,114 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Nombres"
                 android:inputType="textPersonName|textCapWords"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputApellidoP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Apellido Paterno"
                 android:inputType="textPersonName|textCapWords"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputApellidoM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Apellido Materno"
                 android:inputType="textPersonName|textCapWords"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputDNI"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="DNI"
                 android:inputType="number"
                 android:maxLength="8"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputDigito"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Dígito verificador"
                 android:inputType="number"
                 android:maxLength="1"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputFechaNacimiento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
+                android:clickable="true"
+                android:focusable="false"
                 android:hint="Fecha de nacimiento (DD/MM/AAAA)"
                 android:inputType="date"
-                android:focusable="false"
-                android:clickable="true"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputCorreo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Correo electrónico"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputTelefono"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Teléfono"
                 android:inputType="phone"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputContrasena"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <EditText
                 android:id="@+id/inputContrasena2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
+                android:background="@drawable/rounded_edittext"
                 android:hint="Repetir contraseña"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:padding="12dp"
-                android:background="@drawable/rounded_edittext" />
+                android:padding="12dp" />
 
             <Button
                 android:id="@+id/btnLogin"

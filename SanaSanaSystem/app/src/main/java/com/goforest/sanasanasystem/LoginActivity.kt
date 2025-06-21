@@ -24,10 +24,11 @@ class LoginActivity : AppCompatActivity() {
         val access_token: String,
         val token_type: String
     )
-
     data class LoginResponse(
         val dni: String,
         val email: String,
+        val nombres: String,
+        val apellidos: String,
         val token: TokenResponse
     )
 
@@ -124,13 +125,19 @@ class LoginActivity : AppCompatActivity() {
                     val editor = sharedPreferences.edit()
                     editor.putString("auth_token", user.token.access_token)
                     editor.putString("user_email", user.email)
+
+                    val firstName = user.nombres.split(" ").firstOrNull() ?: "Usuario"
+                    editor.putString("user_first_name", firstName)
+
                     editor.apply()
 
                     Toast.makeText(this@LoginActivity, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
 
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
-                } else {
+                }
+
+                else {
                     val errorBody = response.errorBody()?.string()
                     val errorMessage = parseApiError(response.code(), errorBody)
                     showErrorDialog("Error de Inicio de Sesión", errorMessage)

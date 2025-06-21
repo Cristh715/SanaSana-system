@@ -82,11 +82,9 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Próximamente: Bienestar diario", Toast.LENGTH_SHORT).show()
         }
 
-        // Nombre obtenido del correo :'v
         val sharedPref = getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
-        val userName = sharedPref.getString("user_email", "Usuario")
-        val displayName = if (userName?.contains("@") == true) userName.split("@")[0] else userName
-        findViewById<TextView>(R.id.nameTextView).text = "$displayName!"
+        val firstName = sharedPref.getString("user_first_name", "Usuario")
+        findViewById<TextView>(R.id.nameTextView).text = "$firstName!"
 
         findViewById<View>(R.id.stayHomeCardView).setOnClickListener {
             Toast.makeText(this, "Redirigiendo a la próxima cita...", Toast.LENGTH_SHORT).show()
