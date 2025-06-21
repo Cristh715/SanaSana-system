@@ -8,4 +8,5 @@
     <color name="backgroundLight_pressed">#DFDFEB</color>
     <color name="textDark">#333333</color>
     <color name="gray_light">#E0E0E0</color>
+    <color name="gray">#808080</color>
 </resources>

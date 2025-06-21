@@ -34,6 +34,11 @@ class CreateAppointmentActivity : AppCompatActivity() {
             turnos
         )
 
+        val ancoreRecomendacion = findViewById<TextView>(R.id.ancoreRecomendacion)
+        ancoreRecomendacion.setOnClickListener {
+            startActivity(Intent(this, GetRecommendationActivity::class.java))
+        }
+
         val btnSolicitar = findViewById<Button>(R.id.btnLogin)
         btnSolicitar.setOnClickListener {
             val fecha = findViewById<EditText>(R.id.inputFechaCita).text.toString()
