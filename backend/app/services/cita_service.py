@@ -13,7 +13,7 @@ import uuid
 
 async def solicitar_cita(
     db: AsyncSession,
-    id_cuenta: int,  # ahora recibimos id_cuenta en vez de id_paciente
+    id_cuenta: int,  
     id_turno: int,
     sintomas: str
 ) -> CitaResponse:
@@ -29,7 +29,7 @@ async def solicitar_cita(
     # 1. Verificar que el turno existe y cargar el medico relacionado
     result = await db.execute(
         select(Turno)
-        .options(selectinload(Turno.medico))  # carga la relación medico
+        .options(selectinload(Turno.medico))  
         .where(Turno.id_turno == id_turno)
     )
     turno = result.scalar_one_or_none()
@@ -64,7 +64,6 @@ async def solicitar_cita(
         sintomas=sintomas,
         qr_codigo=qr_codigo,
         fecha_creacion=datetime.now()
-        # estado y confirmacion_asistencia se definen por defecto en la BD
     )
 
     db.add(nueva_cita)
