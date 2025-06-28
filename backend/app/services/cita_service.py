@@ -115,6 +115,7 @@ async def obtener_historial_citas(db: AsyncSession, id_cuenta: int):
             "turno": turno,
             "sintomas": cita.sintomas,
             "estado": cita.estado,
-            "confirmacion_asistencia": cita.confirmacion_asistencia
+            "confirmacion_asistencia": cita.confirmacion_asistencia,
+            "qr_codigo": cita.qr_codigo
         })
     return historial
