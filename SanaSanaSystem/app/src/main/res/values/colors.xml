@@ -9,4 +9,8 @@
     <color name="textDark">#333333</color>
     <color name="gray_light">#E0E0E0</color>
     <color name="gray">#808080</color>
+    <color name="purple_50">#F3E8FF</color>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="horarios_bg">#F8F6FF</color>
 </resources>
