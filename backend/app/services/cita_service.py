@@ -15,6 +15,7 @@ async def solicitar_cita(
     db: AsyncSession,
     id_cuenta: int,  
     id_turno: int,
+    fecha: datetime,
     sintomas: str
 ) -> CitaResponse:
     # 0. Obtener id_paciente a partir de id_cuenta
@@ -59,7 +60,7 @@ async def solicitar_cita(
         id_paciente=id_paciente,
         id_turno=id_turno,
         especialidad=especialidad,
-        fecha=turno.fecha,
+        fecha= fecha,
         numero_turno=numero_turno,
         sintomas=sintomas,
         qr_codigo=qr_codigo,
@@ -114,6 +115,7 @@ async def obtener_historial_citas(db: AsyncSession, id_cuenta: int):
             "turno": turno,
             "sintomas": cita.sintomas,
             "estado": cita.estado,
-            "confirmacion_asistencia": cita.confirmacion_asistencia
+            "confirmacion_asistencia": cita.confirmacion_asistencia,
+            "qr_codigo": cita.qr_codigo
         })
     return historial

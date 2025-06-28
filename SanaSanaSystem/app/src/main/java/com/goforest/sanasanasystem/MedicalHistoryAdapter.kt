@@ -14,8 +14,7 @@ class MedicalHistoryAdapter(private var items: List<MedicalHistoryItem>) : Recyc
         val fechaTextView: TextView = view.findViewById(R.id.fechaTextView)
         val especialidadTextView: TextView = view.findViewById(R.id.especialidadTextView)
         val medicoTextView: TextView = view.findViewById(R.id.medicoTextView)
-        val estadoTextView: TextView = view.findViewById(R.id.estadoTextView)
-        val sintomasTextView: TextView = view.findViewById(R.id.sintomasTextView)
+        val estadoBadgeTextView: TextView = view.findViewById(R.id.estadoBadgeTextView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,14 +27,12 @@ class MedicalHistoryAdapter(private var items: List<MedicalHistoryItem>) : Recyc
         holder.fechaTextView.text = item.fecha
         holder.especialidadTextView.text = item.especialidad
         holder.medicoTextView.text = item.medico?.let { "${it["nombres"]} ${it["apellidos"]}" } ?: "-"
-        holder.sintomasTextView.text = item.sintomas?.takeIf { it.isNotBlank() } ?: ""
-        holder.sintomasTextView.visibility = if (item.sintomas.isNullOrBlank()) View.GONE else View.VISIBLE
-        holder.estadoTextView.text = item.estado
+        holder.estadoBadgeTextView.text = item.estado
         when (item.estado.lowercase()) {
-            "pendiente" -> holder.estadoTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.principal))
-            "cancelada" -> holder.estadoTextView.setTextColor(Color.RED)
-            "atendida", "finalizada" -> holder.estadoTextView.setTextColor(Color.parseColor("#388E3C")) // verde
-            else -> holder.estadoTextView.setTextColor(Color.GRAY)
+            "pendiente" -> holder.estadoBadgeTextView.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.principal))
+            "cancelada" -> holder.estadoBadgeTextView.setTextColor(Color.RED)
+            "atendida", "finalizada" -> holder.estadoBadgeTextView.setTextColor(Color.parseColor("#388E3C")) // verde
+            else -> holder.estadoBadgeTextView.setTextColor(Color.GRAY)
         }
     }
 
