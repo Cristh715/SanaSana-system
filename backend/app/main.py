@@ -3,7 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.routers import register_router
+from app.routers import register_router, disponibilidad_router
 from app.routers.cita_router import cita_router
 from app.routers import auth
 from app.routers import disponibilidad
@@ -36,6 +36,7 @@ async def health_check():
 
 # Routing
 app.include_router(register_router)
+app.include_router(disponibilidad_router)
 app.include_router(cita_router)
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(disponibilidad.router)
