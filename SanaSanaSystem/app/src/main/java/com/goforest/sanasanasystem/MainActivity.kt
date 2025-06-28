@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         horariosItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente: Turnos médicos", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, HorariosEspecialidadesActivity::class.java))
         }
 
         historyItemView.setOnClickListener {

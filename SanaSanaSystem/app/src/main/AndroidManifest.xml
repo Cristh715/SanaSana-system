@@ -29,6 +29,7 @@
         <activity android:name=".CreateAppointmentActivity" />
         <activity android:name=".MyAppointmentsActivity" />
         <activity android:name=".GetRecommendationActivity" />
+        <activity android:name=".HorariosEspecialidadesActivity" />
     </application>
 
 </manifest>
