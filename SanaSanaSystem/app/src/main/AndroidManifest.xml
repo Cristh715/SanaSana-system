@@ -33,6 +33,7 @@
         <activity android:name=".MyAppointmentsActivity" />
         <activity android:name=".GetRecommendationActivity" />
         <activity android:name=".HorariosEspecialidadesActivity" />
+        <activity android:name=".MedicalHistoryActivity" />
         <receiver android:name=".NotificationReceiver" android:exported="false"/>
     </application>
 

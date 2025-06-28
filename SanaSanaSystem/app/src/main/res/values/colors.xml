@@ -13,4 +13,5 @@
     <color name="purple_500">#6200EE</color>
     <color name="purple_700">#3700B3</color>
     <color name="horarios_bg">#F8F6FF</color>
+    <color name="logoutRed">#D32F2F</color>
 </resources>
