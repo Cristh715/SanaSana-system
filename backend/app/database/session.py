@@ -3,6 +3,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 
 from app.utils.settings import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT
 
+from contextlib import asynccontextmanager
+
 # Construye el URL para Async MySQL (aiomysql)
 SQLALCHEMY_DATABASE_URL = (
     f"mysql+aiomysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
@@ -19,5 +21,9 @@ SessionLocal = sessionmaker(
     class_=AsyncSession,
     expire_on_commit=False
 )
+
+async def get_db():
+    async with SessionLocal() as session:
+        yield session
 
 Base = declarative_base()
