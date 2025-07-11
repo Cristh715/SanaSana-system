@@ -18,6 +18,7 @@ class Cita(Base):
     qr_codigo = Column(String, nullable=True)
     fecha_creacion = Column(TIMESTAMP, server_default=func.current_timestamp(), nullable=False)
     confirmacion_asistencia = Column(Boolean, default=False)
-
+    prioridad_emergencia = Column(String)
+    
     paciente = relationship("Paciente", backref="citas")
     turno = relationship("Turno", backref="citas")

@@ -10,6 +10,8 @@ from app.models.paciente import Paciente
 from app.schemas.cita import CitaResponse
 from datetime import datetime
 import uuid
+from app.core.model_state import pipeline
+from app.services.predictor import predict
 
 async def solicitar_cita(
     db: AsyncSession,
@@ -50,10 +52,14 @@ async def solicitar_cita(
     # 3. Asignar número de turno
     numero_turno = numero_actual + 1
 
-    # 4. Generar texto para QR
+    # Paso 4: Hacer la predicción de urgencia
+    resultado_prediccion = predict(sintomas, pipeline)
+    prioridad_emergencia = resultado_prediccion["clasificacion"]  # Ej: "URGENTE"
+
+    # 5. Generar texto para QR
     qr_codigo = f"Cita-{uuid.uuid4()}"
 
-    # 5. Crear instancia de cita usando especialidad del médico
+    # 6. Crear instancia de cita usando especialidad del médico
     especialidad = turno.medico.especialidad if turno.medico else None
 
     nueva_cita = Cita(
@@ -64,7 +70,8 @@ async def solicitar_cita(
         numero_turno=numero_turno,
         sintomas=sintomas,
         qr_codigo=qr_codigo,
-        fecha_creacion=datetime.now()
+        fecha_creacion=datetime.now(),
+        prioridad_emergencia=prioridad_emergencia
     )
 
     db.add(nueva_cita)

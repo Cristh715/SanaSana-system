@@ -7,6 +7,9 @@ from app.routers import register_router
 from app.routers.cita_router import cita_router
 from app.routers import auth
 from app.routers import disponibilidad
+from app.services.predictor import load_model
+
+tokenizer, model, pipeline = load_model()
 
 # App instance
 app = FastAPI(
