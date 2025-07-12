@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="16dp"
-    card_view:cardElevation="6dp"
+    card_view:cardElevation="0dp"
     android:layout_marginBottom="16dp"
     android:background="@color/white">
 
@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="12dp">
+        android:padding="12dp"
+        android:background="@drawable/bg_card_border_secondary">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,7 +38,11 @@
                 android:layout_height="32dp"
                 android:src="@android:drawable/arrow_down_float"
                 android:contentDescription="Expandir"
-                app:tint="@color/purple_500"/>
+                app:tint="@color/purple_500"
+                android:background="@drawable/bg_btn_principal"
+                android:padding="6dp"
+                android:elevation="0dp"
+                android:scaleType="centerInside"/>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
