@@ -1,16 +1,13 @@
-from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
+from app.core.model_state import pipeline_urgency, pipeline_specialty
 
-def load_model():
-    ruta = "./app/model"
-    tokenizer = AutoTokenizer.from_pretrained(ruta, local_files_only=True)
-    model = AutoModelForSequenceClassification.from_pretrained(ruta, local_files_only=True)
-    clasificador = pipeline("text-classification", model=model, tokenizer=tokenizer)
-    return tokenizer, model, clasificador
-
-def predict(texto: str, clasificador):
-    resultado = clasificador(texto)[0]
+def predecir_urgencia(texto: str) -> dict:
+    resultado = pipeline_urgency(texto)[0]
     return {
-        "texto": texto,
         "clasificacion": resultado["label"],
-        "score": round(resultado["score"] * 100, 2)
+    }
+
+def predecir_especialidad(texto: str) -> dict:
+    resultado = pipeline_specialty(texto)[0]
+    return {
+        "clasificacion": resultado["label"],
     }
