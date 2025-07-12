@@ -80,7 +80,6 @@ class RegisterActivity : AppCompatActivity() {
             showDatePickerDialog()
         }
 
-        // --- Listeners ---
         btnRegister.setOnClickListener {
             attemptRegister()
         }
@@ -104,7 +103,6 @@ class RegisterActivity : AppCompatActivity() {
         val password = inputContrasena.text.toString().trim()
         val passwordConfirm = inputContrasena2.text.toString().trim()
 
-        // --- Validaciones de campos ---
         var isValid = true
 
         if (nombres.isEmpty()) {

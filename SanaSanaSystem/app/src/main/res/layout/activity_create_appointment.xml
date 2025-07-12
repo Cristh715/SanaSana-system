@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/bg_sanasana">
 
         <ImageView
@@ -65,7 +65,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:backgroundTint="@color/principal"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                android:layout_margin="0dp"/>
+
+
+            <TextView
+                android:id="@+id/ancoreRecomendacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Necesitas ayuda? Sugerir Recomendación"
+                android:textColor="@color/principal"
+                android:textSize="14sp"
+                android:layout_marginBottom="20dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/labelFecha"

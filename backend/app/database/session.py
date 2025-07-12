@@ -27,3 +27,10 @@ async def get_db():
         yield session
 
 Base = declarative_base()
+
+async def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        await db.close()

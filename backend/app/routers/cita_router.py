@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.schemas.cita import CitaCreate, CitaResponse
-from app.services.cita_service import solicitar_cita
+from app.services.cita_service import solicitar_cita, obtener_historial_citas
 from app.database.session import SessionLocal
 from app.auth.jwt import get_current_user_id  
 
@@ -25,3 +25,10 @@ async def create_cita(
         fecha=data.fecha,
         sintomas=data.sintomas
     )
+
+@cita_router.get("/citas/historial")
+async def get_historial_citas(
+    db: AsyncSession = Depends(get_db),
+    id_cuenta: int = Depends(get_current_user_id)
+):
+    return await obtener_historial_citas(db, id_cuenta)

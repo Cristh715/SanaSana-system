@@ -14,3 +14,4 @@ class Paciente(Base):
     fecha_nacimiento = Column(Date, nullable=True)
 
     cuenta = relationship("CuentaPaciente", backref="pacientes")
+    registros_bienestar = relationship("RegistroBienestar", back_populates="paciente")

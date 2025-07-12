@@ -5,6 +5,26 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:fontFamily">@font/font_poppins_regular</item>
     </style>
-
+    <style name="CustomChipStyle" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="android:minHeight">48dp</item>
+    </style>
     <style name="Theme.SanaSanaSystem" parent="Base.Theme.SanaSanaSystem" />
+    <style name="SymptomItemStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/bg_symptom_item_selector</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:minWidth">90dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="layout_flexShrink">0.0</item>
+        <item name="layout_flexGrow">0.0</item>
+    </style>
 </resources>
