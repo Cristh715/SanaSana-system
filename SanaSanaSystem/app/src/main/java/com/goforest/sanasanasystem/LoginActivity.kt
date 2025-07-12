@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         fun login(@Body request: LoginRequest): Call<LoginResponse>
     }
 
-    private val retrofit = Retrofit.Builder()
+private val retrofit = Retrofit.Builder()
         .baseUrl("http://10.0.2.2:8000/api/auth/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
