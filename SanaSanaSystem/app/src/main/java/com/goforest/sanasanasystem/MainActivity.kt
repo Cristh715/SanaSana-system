@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         bienestarDiarioItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente: Bienestar diario", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, BienestarActivity::class.java))
         }
 
         val sharedPref = getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
@@ -115,6 +115,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         moveTaskToBack(true)
     }
 }
