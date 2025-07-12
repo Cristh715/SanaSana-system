@@ -19,16 +19,15 @@ import retrofit2.http.POST
 class GetRecommendationActivity: AppCompatActivity() {
 
     data class RecomendationRequest (
-        val prompt: String
+        val sintomas: String
     )
 
     data class RecomendationResponse (
-        val especialidad: String,
-        val detalle: String,
+        val clasificacion: String
     )
 
     interface RecommendationService {
-        @POST("api/ai/recommendation")
+        @POST("api/especialidad")
         fun getAIRecommendation(@Body request: RecomendationRequest): Call<RecomendationResponse>
     }
 
@@ -42,8 +41,6 @@ class GetRecommendationActivity: AppCompatActivity() {
         setContentView(R.layout.activity_get_recommendation)
 
         inputSintomas = findViewById(R.id.inputSintomas)
-        outputEspecialidad =  findViewById(R.id.outputEspecialidad)
-        outputDetalle =  findViewById(R.id.outputDetalle)
         progressBar = findViewById(R.id.progressBar)
 
         val btnAnalizar = findViewById<Button>(R.id.btnAnalizar)
@@ -80,14 +77,13 @@ class GetRecommendationActivity: AppCompatActivity() {
     private fun fetchAIRecommendation(sintomas: String) {
         progressBar.visibility = View.VISIBLE
 
-        val request = RecomendationRequest(prompt = sintomas)
+        val request = RecomendationRequest(sintomas = sintomas)
         val service = ApiClient.getClient(this).create(RecommendationService::class.java)
         service.getAIRecommendation(request).enqueue(object : Callback<RecomendationResponse> {
             override fun onResponse(call: Call<RecomendationResponse>, response: Response<RecomendationResponse>) {
                 progressBar.visibility = View.GONE
                 val data = response.body()
-                outputEspecialidad.text = data?.especialidad
-                outputDetalle.text = "Debido a que " + data?.detalle
+                outputEspecialidad.text = data?.clasificacion
             }
             override fun onFailure(call: Call<RecomendationResponse>, t: Throwable) {
                 progressBar.visibility = View.GONE

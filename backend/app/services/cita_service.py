@@ -11,7 +11,7 @@ from app.schemas.cita import CitaResponse
 from datetime import datetime
 import uuid
 from app.core.model_state import pipeline
-from app.services.predictor import predict
+from app.services.predictor import predecir_urgencia
 
 async def solicitar_cita(
     db: AsyncSession,
@@ -53,7 +53,7 @@ async def solicitar_cita(
     numero_turno = numero_actual + 1
 
     # Paso 4: Hacer la predicción de urgencia
-    resultado_prediccion = predict(sintomas, pipeline)
+    resultado_prediccion = predecir_urgencia(sintomas)
     prioridad_emergencia = resultado_prediccion["clasificacion"]  # Ej: "URGENTE"
 
     # 5. Generar texto para QR
