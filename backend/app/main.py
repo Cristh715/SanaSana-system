@@ -3,12 +3,17 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.routers import register_router
+from app.routers import register_router, disponibilidad_router
 from app.routers.cita_router import cita_router
 from app.routers import auth
 from app.routers import disponibilidad
 from app.routers.especialidad_router import router as especialidad_router
 from app.core.model_state import load_pipeline
+from app.services.predictor import load_model
+
+tokenizer, model, pipeline = load_model()
+
+from app.routers import bienestar_router
 
 # App instance
 app = FastAPI(
@@ -38,10 +43,10 @@ async def health_check():
 
 # Routing
 app.include_router(register_router)
+app.include_router(disponibilidad_router)
 app.include_router(cita_router)
 app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
 app.include_router(disponibilidad.router)
-app.include_router(especialidad_router)
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -71,25 +72,33 @@ class MainActivity : AppCompatActivity() {
         }
 
         horariosItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente: Turnos médicos", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, HorariosEspecialidadesActivity::class.java))
         }
 
         historyItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente: Historial médico", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MedicalHistoryActivity::class.java))
         }
 
         bienestarDiarioItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente: Bienestar diario", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, BienestarActivity::class.java))
         }
 
-        // Nombre obtenido del correo :'v
         val sharedPref = getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
-        val userName = sharedPref.getString("user_email", "Usuario")
-        val displayName = if (userName?.contains("@") == true) userName.split("@")[0] else userName
-        findViewById<TextView>(R.id.nameTextView).text = "$displayName!"
+        val firstName = sharedPref.getString("user_first_name", "Usuario")
+        findViewById<TextView>(R.id.nameTextView).text = "$firstName!"
 
         findViewById<View>(R.id.stayHomeCardView).setOnClickListener {
             Toast.makeText(this, "Redirigiendo a la próxima cita...", Toast.LENGTH_SHORT).show()
+        }
+
+        val btnLogout = findViewById<Button>(R.id.btnLogout)
+        btnLogout.setOnClickListener {
+            val sharedPref = getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
+            sharedPref.edit().remove("auth_token").apply()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -106,6 +115,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         moveTaskToBack(true)
     }
 }
