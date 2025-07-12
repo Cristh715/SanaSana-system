@@ -22,6 +22,7 @@ async def create_cita(
         db,
         id_cuenta=id_cuenta,
         id_turno=data.id_turno,
+        fecha=data.fecha,
         sintomas=data.sintomas
     )
 
