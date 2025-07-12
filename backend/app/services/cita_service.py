@@ -15,6 +15,7 @@ async def solicitar_cita(
     db: AsyncSession,
     id_cuenta: int,  
     id_turno: int,
+    fecha: datetime,
     sintomas: str
 ) -> CitaResponse:
     # 0. Obtener id_paciente a partir de id_cuenta
@@ -59,7 +60,7 @@ async def solicitar_cita(
         id_paciente=id_paciente,
         id_turno=id_turno,
         especialidad=especialidad,
-        fecha=turno.fecha,
+        fecha= fecha,
         numero_turno=numero_turno,
         sintomas=sintomas,
         qr_codigo=qr_codigo,
@@ -71,3 +72,50 @@ async def solicitar_cita(
     await db.refresh(nueva_cita)
 
     return CitaResponse.from_orm(nueva_cita)
+
+async def obtener_historial_citas(db: AsyncSession, id_cuenta: int):
+    # Obtener id_paciente a partir de id_cuenta
+    result = await db.execute(
+        select(Paciente.id_paciente).where(Paciente.id_cuenta == id_cuenta)
+    )
+    id_paciente = result.scalar_one_or_none()
+    if id_paciente is None:
+        raise ValueError("No existe paciente asociado a la cuenta")
+
+    # Obtener todas las citas del paciente, ordenadas de más reciente a más antigua
+    result = await db.execute(
+        select(Cita)
+        .options(
+            selectinload(Cita.turno).selectinload(Turno.medico)
+        )
+        .where(Cita.id_paciente == id_paciente)
+        .order_by(Cita.fecha.desc())
+    )
+    citas = result.scalars().all()
+
+    # Construir la respuesta incluyendo datos del médico y turno
+    historial = []
+    for cita in citas:
+        medico = None
+        turno = None
+        if cita.turno:
+            turno = cita.turno.turno
+            if cita.turno.medico:
+                medico = {
+                    "nombres": cita.turno.medico.nombres,
+                    "apellidos": cita.turno.medico.apellidos,
+                    "especialidad": cita.turno.medico.especialidad,
+                    "correo": cita.turno.medico.correo
+                }
+        historial.append({
+            "id_cita": cita.id_cita,
+            "fecha": cita.fecha,
+            "especialidad": cita.especialidad,
+            "medico": medico,
+            "turno": turno,
+            "sintomas": cita.sintomas,
+            "estado": cita.estado,
+            "confirmacion_asistencia": cita.confirmacion_asistencia,
+            "qr_codigo": cita.qr_codigo
+        })
+    return historial

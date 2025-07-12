@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -71,11 +72,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         horariosItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente: Turnos médicos", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, HorariosEspecialidadesActivity::class.java))
         }
 
         historyItemView.setOnClickListener {
-            Toast.makeText(this, "Próximamente: Historial médico", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MedicalHistoryActivity::class.java))
         }
 
         bienestarDiarioItemView.setOnClickListener {
@@ -88,6 +89,16 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.stayHomeCardView).setOnClickListener {
             Toast.makeText(this, "Redirigiendo a la próxima cita...", Toast.LENGTH_SHORT).show()
+        }
+
+        val btnLogout = findViewById<Button>(R.id.btnLogout)
+        btnLogout.setOnClickListener {
+            val sharedPref = getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
+            sharedPref.edit().remove("auth_token").apply()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
 

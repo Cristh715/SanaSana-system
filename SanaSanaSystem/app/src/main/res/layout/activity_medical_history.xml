@@ -5,19 +5,19 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_sanasana">
 
-    <!-- Cabecera con fondo degradado -->
+    <!-- Header -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerContainer"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Botón de volver -->
+        <!-- Botón de retroceso -->
         <ImageButton
-            android:id="@+id/btnVolver"
+            android:id="@+id/btnBack"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="40dp"
             android:background="@drawable/bg_btn_principal"
             android:contentDescription="Volver"
@@ -27,35 +27,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Logo -->
+        <!-- Logo en la esquina superior derecha -->
         <ImageView
             android:id="@+id/menuIconView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="32dp"
             android:layout_marginTop="40dp"
             android:contentDescription="Logo"
             android:src="@drawable/ic_sana_sana_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Título alineado a la izquierda -->
+        <!-- Título alineado a la izquierda, en la parte inferior del header -->
         <TextView
-            android:id="@+id/titleMisCitas"
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mis Citas"
+            android:text="Historial médico"
             android:textColor="@color/white"
             android:textSize="32sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginStart="40dp"/>
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="24dp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Contenedor blanco con mayor margen superior -->
+    <!-- Contenedor blanco con esquinas redondeadas -->
     <LinearLayout
         android:id="@+id/whiteContainer"
         android:layout_width="match_parent"
@@ -63,17 +63,17 @@
         android:orientation="vertical"
         android:background="@drawable/bg_section_background"
         android:layout_marginTop="0dp"
-        android:paddingTop="32dp"
+        android:paddingTop="24dp"
         app:layout_constraintTop_toBottomOf="@id/headerContainer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/citasRecyclerView"
+            android:id="@+id/medicalHistoryRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp"
+            android:padding="20dp"
             android:clipToPadding="false" />
     </LinearLayout>
 
