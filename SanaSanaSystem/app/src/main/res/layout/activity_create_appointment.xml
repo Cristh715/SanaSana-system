@@ -135,7 +135,10 @@
                 android:autofillHints=""
                 android:backgroundTint="@color/principal"
                 android:hint="Médico"
-                android:inputType="textPersonName"
+                android:inputType="none"
+                android:focusable="false"
+                android:clickable="true"
+                android:cursorVisible="false"
                 android:minHeight="48dp" />
 
             <TextView

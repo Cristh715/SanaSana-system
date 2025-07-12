@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.schemas.cita import CitaCreate, CitaResponse
@@ -12,19 +12,23 @@ async def get_db():
     async with SessionLocal() as session:
         yield session
 
-@cita_router.post("/citas", response_model=CitaResponse)
+@cita_router.post("/citas", response_model=CitaResponse, status_code=status.HTTP_201_CREATED)
 async def create_cita(
     data: CitaCreate,
     db: AsyncSession = Depends(get_db),
-    id_cuenta: int = Depends(get_current_user_id)  
+    id_cuenta: int = Depends(get_current_user_id) 
 ):
-    return await solicitar_cita(
-        db,
-        id_cuenta=id_cuenta,
-        id_turno=data.id_turno,
-        fecha=data.fecha,
-        sintomas=data.sintomas
-    )
+    try:
+        return await solicitar_cita(
+            db,
+            id_cuenta=id_cuenta,
+            id_turno=data.id_turno,
+            fecha=data.fecha,
+            sintomas=data.sintomas
+        )
+    except Exception as e:
+        print(f"Error al crear cita: {e}")
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Error interno al crear la cita.")
 
 @cita_router.get("/citas/historial")
 async def get_historial_citas(

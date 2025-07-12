@@ -12,4 +12,6 @@ class Turno(Base):
     turno = Column(String(10), nullable=False)  
     cupo = Column(Integer, nullable=False)
 
-    medico = relationship("Medico", backref="turnos")
+    medico = relationship("Medico", back_populates="turnos")
+    def __repr__(self):
+        return f"<Turno(id={self.id_turno}, turno='{self.turno}', medico_id={self.id_medico})>"

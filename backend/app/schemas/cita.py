@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from datetime import date, datetime
 
 class CitaCreate(BaseModel):
-    id_paciente: int
     id_turno: int
     fecha: datetime
     sintomas: str
