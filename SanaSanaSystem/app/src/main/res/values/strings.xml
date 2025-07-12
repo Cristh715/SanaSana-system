@@ -5,4 +5,26 @@
         <item>Carnet de Extranjería</item>
     </string-array>
     <string name="welcome">Bienvenido,</string>
+    <string name="content_description_volver">Botón para volver a la pantalla anterior</string>
+    //Bienestar
+    <string name="content_description_logo">Logo de SanaSana</string>
+    <string name="como_te_sientes_title">¿Cómo te sientes?</string>
+    <string name="estado_emocional_label">Estado emocional</string>
+    <string name="sintomas_fisicos_label">Síntomas físicos</string>
+    <string name="anadir_nota_label">Añadir nota</string>
+    <string name="nota_hint">Describe brevemente cómo te sientes...</string>
+    <string name="guardar_registro_button">Guardar registro</string>
+
+    <string name="sintoma_dolor_cabeza">Dolor de cabeza</string>
+    <string name="sintoma_cansancio">Cansancio</string>
+    <string name="sintoma_fiebre">Fiebre</string>
+    <string name="sintoma_nauseas">Náuseas</string>
+    <string name="sintoma_dolor_muscular_articular">Dolor muscular</string>
+    <string name="sintoma_dolor_garganta">Dolor de garganta</string>
+    <string name="sintoma_estornudos_congestion">Estornudos</string>
+    <string name="sintoma_tos">Tos</string>
+    <string name="sintoma_problemas_sueno">Problemas de sueño</string>
+    <string name="sintoma_estres_ansiedad">Estrés</string>
+    <string name="sintoma_dolor_abdominal">Dolor abdominal</string>
+    <string name="sintoma_otro">Otro</string>
 </resources>

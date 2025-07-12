@@ -136,7 +136,6 @@ private val retrofit = Retrofit.Builder()
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
                 }
-
                 else {
                     val errorBody = response.errorBody()?.string()
                     val errorMessage = parseApiError(response.code(), errorBody)

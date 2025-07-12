@@ -19,7 +19,7 @@ object ApiClient {
                     val builder = original.newBuilder()
                     // Obtener el token JWT guardado en SharedPreferences
                     val sharedPref = context.getSharedPreferences("sana_sana_prefs", Context.MODE_PRIVATE)
-                    val token = sharedPref.getString("auth_token", null)
+                    val token= sharedPref.getString("auth_token", null)
                     if (!token.isNullOrEmpty()) {
                         Log.d("ApiClient", "Enviando token: $token")
                         builder.header("Authorization", "Bearer $token")
@@ -31,7 +31,7 @@ object ApiClient {
                 .build()
 
             retrofit = Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000") // Cambia la URL si usas otro host
+                .baseUrl("http://10.0.2.2:8000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

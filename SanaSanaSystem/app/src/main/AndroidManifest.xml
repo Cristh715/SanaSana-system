@@ -34,6 +34,7 @@
         <activity android:name=".GetRecommendationActivity" />
         <activity android:name=".HorariosEspecialidadesActivity" />
         <activity android:name=".MedicalHistoryActivity" />
+        <activity android:name=".BienestarActivity" />
         <receiver android:name=".NotificationReceiver" android:exported="false"/>
     </application>
 
