@@ -9,10 +9,6 @@ from app.routers import auth
 from app.routers import disponibilidad
 from app.routers.especialidad_router import router as especialidad_router
 from app.core.model_state import load_pipeline
-from app.services.predictor import load_model
-
-tokenizer, model, pipeline = load_model()
-
 from app.routers import bienestar_router
 
 # App instance
